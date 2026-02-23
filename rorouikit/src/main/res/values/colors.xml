@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="uikit_black">#FF111111</color>
+    <color name="uikit_white">#FFFFFFFF</color>
+    <color name="uikit_transparent">@android:color/transparent</color>
+</resources>
