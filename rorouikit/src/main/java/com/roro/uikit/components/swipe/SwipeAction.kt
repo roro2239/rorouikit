@@ -31,6 +31,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.kyant.capsule.ContinuousRoundedRectangle
+import com.roro.uikit.theme.AppColors
 import com.roro.uikit.theme.AppG2
 import com.roro.uikit.theme.LocalAppTheme
 import kotlinx.coroutines.launch
@@ -50,6 +51,7 @@ data class AppSwipeActionItem(
 fun AppSwipeAction(
     actions: List<AppSwipeActionItem>,
     modifier: Modifier = Modifier,
+    contentBackground: Color = AppColors.surface,
     content: @Composable () -> Unit,
 ) {
     val r = LocalAppTheme.current.cornerRadius
@@ -92,6 +94,7 @@ fun AppSwipeAction(
                 .fillMaxSize()
                 .offset { IntOffset(offsetX.value.roundToInt(), 0) }
                 .clip(contentShape)
+                .background(contentBackground)
                 .pointerInput(maxOffsetPx) {
                     detectHorizontalDragGestures(
                         onDragEnd = {

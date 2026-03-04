@@ -147,7 +147,7 @@ private fun DashboardPage() {
     var segment by remember { mutableIntStateOf(0) }
     var progress by remember { mutableFloatStateOf(0.42f) }
     var slider by remember { mutableFloatStateOf(0.68f) }
-    var step by remember { mutableIntStateOf(1) }
+    var step by remember { mutableIntStateOf(0) }
 
     LazyColumn(
         modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp),
@@ -175,7 +175,7 @@ private fun DashboardPage() {
                         current = step,
                     )
                     AppSegmentedControl(
-                        options = listOf("迭代一", "迭代二", "迭代三"),
+                        options = listOf("迭代一", "迭代二", "迭代三", "迭代四"),
                         selected = segment,
                         onSelect = { segment = it; step = it },
                     )

@@ -53,7 +53,7 @@ fun AppStepIndicator(
                 label = "dot_$i",
             )
             val leftProgress by animateFloatAsState(
-                targetValue = if (done) 1f else 0f,
+                targetValue = if (i <= current && i > 0) 1f else 0f,
                 animationSpec = spring(dampingRatio = 0.9f, stiffness = 300f),
                 label = "left_$i",
             )
