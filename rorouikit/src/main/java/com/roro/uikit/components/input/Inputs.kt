@@ -112,18 +112,24 @@ fun AppTextField(
     enabled: Boolean = true,
     colors: AppTextFieldColors = AppTextFieldDefaults.colors(),
 ) {
-    Column(modifier = modifier) {
+    val showLabel = label != null
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(if (showLabel) 6.dp else 0.dp),
+    ) {
+        if (showLabel) {
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                Text(label ?: "", style = MaterialTheme.typography.bodyMedium, color = colors.unfocusedLabelColor)
+                if (isError && errorMessage != null) {
+                    Text(errorMessage, style = MaterialTheme.typography.labelMedium, color = colors.errorLabelColor)
+                }
+            }
+        }
         OutlinedTextField(
             value = value,
             onValueChange = onValueChange,
             modifier = Modifier.fillMaxWidth(),
-            label = label?.let { {
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                    Text(it, style = MaterialTheme.typography.bodyMedium)
-                    if (isError && errorMessage != null)
-                        Text(errorMessage, style = MaterialTheme.typography.labelMedium, color = colors.errorLabelColor)
-                }
-            } },
+            label = null,
             placeholder = placeholder?.let { { Text(it, style = MaterialTheme.typography.bodyMedium, color = colors.placeholderColor) } },
             leadingIcon = leadingIcon?.let { { Icon(it, null, modifier = Modifier.size(AppColors.iconSize)) } },
             trailingIcon = trailingIcon?.let {
