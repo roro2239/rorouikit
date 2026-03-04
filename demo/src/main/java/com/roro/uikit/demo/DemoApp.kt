@@ -7,14 +7,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBars
-import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -72,6 +69,7 @@ import com.roro.uikit.components.sheet.AppBottomSheet
 import com.roro.uikit.components.slider.AppSlider
 import com.roro.uikit.components.step.AppStepIndicator
 import com.roro.uikit.components.sticky.appStickyHeader
+import com.roro.uikit.components.topbar.AppPageHeader
 import com.roro.uikit.components.swipe.AppSwipeAction
 import com.roro.uikit.components.swipe.AppSwipeActionItem
 import com.roro.uikit.components.tab.AppTabBar
@@ -155,16 +153,15 @@ private fun DashboardPage() {
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         item {
-            Spacer(Modifier.windowInsetsTopHeight(WindowInsets.statusBars))
-            Spacer(Modifier.height(12.dp))
-            Text("产品概览", style = MaterialTheme.typography.displayMedium)
-            Text("展示关键状态与指标", style = MaterialTheme.typography.bodyMedium, color = AppColors.textSecondary)
-            Spacer(Modifier.height(12.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                AppTag("已发布")
-                AppStatusBadge("运行中", type = com.roro.uikit.components.misc.AppBadgeType.Success)
-                AppStatusBadge("轻度告警", type = com.roro.uikit.components.misc.AppBadgeType.Default)
-            }
+            AppPageHeader(
+                title = "产品概览",
+                subtitle = "展示关键状态与指标",
+                tags = {
+                    AppTag("已发布")
+                    AppStatusBadge("运行中", type = com.roro.uikit.components.misc.AppBadgeType.Success)
+                    AppStatusBadge("轻度告警", type = com.roro.uikit.components.misc.AppBadgeType.Default)
+                },
+            )
         }
         item {
             AppFilledCard {
@@ -240,9 +237,10 @@ private fun WorkPage() {
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             item {
-                Spacer(Modifier.windowInsetsTopHeight(WindowInsets.statusBars))
-                Text("任务流", style = MaterialTheme.typography.displayMedium)
-                Text("下拉刷新与卡片清单", style = MaterialTheme.typography.bodyMedium, color = AppColors.textSecondary)
+                AppPageHeader(
+                    title = "任务流",
+                    subtitle = "下拉刷新与卡片清单",
+                )
             }
             appStickyHeader(key = "today", title = "今天")
             item {
@@ -319,9 +317,10 @@ private fun ControlsPage(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         item {
-            Spacer(Modifier.windowInsetsTopHeight(WindowInsets.statusBars))
-            Text("控制面板", style = MaterialTheme.typography.displayMedium)
-            Text("交互组件与主题设置", style = MaterialTheme.typography.bodyMedium, color = AppColors.textSecondary)
+            AppPageHeader(
+                title = "控制面板",
+                subtitle = "交互组件与主题设置",
+            )
         }
         item {
             AppTabBar(
